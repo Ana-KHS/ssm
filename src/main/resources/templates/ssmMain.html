@@ -6,7 +6,9 @@
 </head>
 <body>
 <th:block>
-  <h1>Hello World</h1>
+    <h2 th:text="|${userName}님 환영합니다!|"></h2>
+    <a href="/bulletin/bulletin_write">게시판 글쓰기</a>
+    <a href="/bulletin/bulletin_board">게시판 목록</a>
 </th:block>
 </body>
 </html>
