@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/comm.css}" rel="stylesheet"/>
+<link th:href="@{/css/fragments.css}" rel="stylesheet"/>
+<th:block th:fragment="headerFragment(sessionUserName)">
+  <div id="header-wrap">
+    <div id="session-control">
+      <p th:text="${sessionUserName}">session user</p>
+    </div>
+    <div>
+      <nav id="header-nav">
+        <a href="/">일단 로고 자리임</a>
+        <ul>
+          <li><a href="#">OKR</a></li>
+          <li><a href="#">인력</a></li>
+          <li><a href="#">업무</a></li>
+          <li><a href="#">손익</a></li>
+          <li><a href="#">프로젝트</a></li>
+          <li><a href="#">영수증</a></li>
+          <li><a href="post/list">게시판</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</th:block>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SSM : 로그인</title>
+    <script type="text/javascript" th:src="@{/js/user/userLogin.js}"></script>
+    <link th:href="@{/css/comm.css}" rel="stylesheet"/>
+    <link th:href="@{/css/user.css}" rel="stylesheet"/>
+</head>
+<body>
+<th:block>
+    <div class="userFormWrap">
+        <form action="login" method="post" id="loginForm">
+            <div>
+                <input type="text" name="userId" id="userId" class="user_input" placeholder="아이디" autocomplete="off"/>
+            </div>
+            <div>
+                <input type="password" name="userPassword" id="userPassword" class="user_input" placeholder="비밀번호" />
+            </div>
+            <button id="goLogin" class="submit_btn" onclick="clickLogin()">로그인</button>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>

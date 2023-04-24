@@ -1,18 +1,26 @@
 package com.study.ssm.user.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
+@Getter
 @Table(name = "user_info")
 @DynamicInsert
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserInfoEntity {
     @Id
-    @Column(name = "user_Id") // 사용자 아이디
+    @Column(name = "user_id") // 사용자 아이디
     private String userId;
 
     @Column(name = "user_number") // 사용자 사번
@@ -37,4 +45,10 @@ public class UserInfoEntity {
     private String userJoin;
     @Column(name = "user_resign") // 사용자 퇴사일, default: "N"
     private String userResign;
+    @Column(name = "create_date") // 등록일
+    @CreationTimestamp
+    private LocalDateTime createDate;
+    @Column(name = "modify_date") // 수정일
+    @CreationTimestamp
+    private LocalDateTime modifyDate;
 }

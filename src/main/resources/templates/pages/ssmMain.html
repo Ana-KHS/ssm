@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>SSM</title>
+    <link th:href="@{/css/comm.css}" rel="stylesheet"/>
+    <link th:href="@{/css/fragments.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <th:block>
+        <h2 th:text="|${sessionUserName}님 환영합니다!|"></h2>
+        <a href="/post/write">게시판 글쓰기</a>
+        <a href="/post/list">게시판 목록</a>
+    </th:block>
+</div>
+</body>
+</html>

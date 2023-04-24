@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}">
+<head>
+    <meta charset="UTF-8">
+    <title>ssm : 게시판</title>
+    <link th:href="@{/css/post.css}" rel="stylesheet"/>
+    <link th:href="@{/css/comm.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>게시글 목록</h1>
+    <table>
+        <thead>
+            <tr id="postHeader">
+                <th>No.</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>부서</th>
+                <th>등록일</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="list : ${postList}">
+                <td th:text="${list.postNo}" class="textAlign"></td>
+                <td>
+                    <a th:text="${list.postTitle}" th:href="@{/post/list/postNo{postNo}(postNo = ${list.postNo})}"></a>
+                </td>
+                <td th:text="${list.postWriterName}" class="textAlign"></td>
+                <td th:text="${list.postWriterDept}" class="textAlign"></td>
+                <td th:text="${#temporals.format(list.createDate, 'yyyy-MM-dd')}" class="textAlign"></td>
+                <td th:text="${list.postView}" class="textAlign"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

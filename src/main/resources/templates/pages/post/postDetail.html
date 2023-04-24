@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>ssm : 게시판 상세</title>
+    <script type="text/javascript" th:src="@{/js/post/postDetail.js}"></script>
+    <link th:href="@{/css/comm.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 th:text="${detailList.postTitle}"></h1>
+    <h5 th:text="|${detailList.postWriterName}/${detailList.postWriterDept}|"></h5>
+    <h5 th:text="${#temporals.format(detailList.createDate, 'yyyy-MM-dd HH:MM:SS')}"></h5>
+    <h3 th:text="${detailList.postContent}"></h3>
+    <button th:if="${detailList.postWriterName} == ${sessionUserName}" id="deletePost" onclick="deletePost()">삭제</button>
+</div>
+</body>
+</html>

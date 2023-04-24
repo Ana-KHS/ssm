@@ -1,0 +1,22 @@
+#header-wrap {
+    width: calc(100% - 360px);
+    height: 100px;
+    padding: 10px 180px;
+    background-color: gray;
+}
+
+#header-nav a {
+    display: block;
+    float: left;
+}
+
+#header-nav ul {
+    float: right;
+    background-color: red;
+}
+
+#header-nav li {
+    float: left;
+    padding: 10px 30px;
+    background-color: pink;
+}

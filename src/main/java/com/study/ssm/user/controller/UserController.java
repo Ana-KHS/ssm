@@ -1,9 +1,8 @@
 package com.study.ssm.user.controller;
 
 
-import com.study.ssm.common.entity.CommEntity;
 import com.study.ssm.common.service.CommService;
-import com.study.ssm.user.entity.UserBasicEntity;
+import com.study.ssm.user.entity.UserInfoEntity;
 import com.study.ssm.user.repository.UserRepository;
 import com.study.ssm.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -24,17 +20,15 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private CommService commService;
 
     @GetMapping("/")
     public String ssmMain(HttpSession session, Model model) {
-        String userBasicEntity = (String) session.getAttribute("userName");
-        String userDept = (String) session.getAttribute("userName");
-        if(userBasicEntity != null) {
-            model.addAttribute("userName", userBasicEntity);
-            model.addAttribute("userDept", userDept);
-            return "ssmMain";
+        String sessionUserName = (String) session.getAttribute("sessionUserName");
+        String sessionUserDept = (String) session.getAttribute("sessionUserDept");
+        if(sessionUserName != null) {
+            model.addAttribute("sessionUserName", sessionUserName);
+            model.addAttribute("sessionUserDept", sessionUserDept);
+            return "pages/ssmMain";
         }else {
             return "redirect:/login";
         }
@@ -42,16 +36,16 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
-        return "user/userLogin";
+        return "pages/user/userLogin";
     }
 
     @PostMapping("/login")
     public String loginResult(@RequestParam String userId, @RequestParam String userPassword, HttpSession session) {
         boolean loginResult = userService.login(userId, userPassword);
-        UserBasicEntity userBasicEntity = userRepository.findUser(userId, userPassword);
+        UserInfoEntity userInfoEntity = userRepository.findUser(userId, userPassword);
         if(loginResult) {
-            session.setAttribute("userName", userBasicEntity.getUserName());
-            session.setAttribute("userDept", userBasicEntity.getUserDept());
+            session.setAttribute("sessionUserName", userInfoEntity.getUserName());
+            session.setAttribute("sessionUserDept", userInfoEntity.getUserDept());
             return "redirect:/";
         }else {
             return "redirect:/login";

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>ssm : 게시글 등록</title>
+    <link th:href="@{/css/comm.css}" rel="stylesheet"/>
+    <link th:href="@{/css/user.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="contents">
+        <div class="cont-wrap">
+            <h3 class="cont-tit">게시글 등록</h3>
+            <th:block>
+                <form action="insertPost" method="post" id="postWriteForm">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>제목</th>
+                                <td>
+                                    <input type="text" name="postTitle" id="postTitle" placeholder="제목을 입력해 주세요."/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <td>
+                                    <textarea id="postContent" name="postContent" placeholder="내용을 입력해 주세요."></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="submit_btn">등록하기</button>
+                </form>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>
