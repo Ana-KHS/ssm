@@ -33,6 +33,15 @@ public class PostController {
         model.addAttribute("postList", postService.postList());
         return "pages/post/postList";
     }*/
+   /* @GetMapping("/list")
+    public ModelAndView postListTest(HttpSession session) {
+        String url = "pages/post/postList";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName(url);
+        mv.addObject("sessionUserName", session.getAttribute("sessionUserName"));
+        mv.addObject("postList", postService.postList());
+        return mv;
+    }*/
     @GetMapping("/list")
     public ModelAndView postListTest(HttpSession session) {
         String url = "pages/post/postList";
@@ -54,5 +63,11 @@ public class PostController {
         model.addAttribute("sessionUserName", session.getAttribute("sessionUserName"));
         model.addAttribute("detailList", postService.postDetail(postNo));
         return "pages/post/postDetail";
+    }
+
+    @PostMapping("/list/delete")
+    public String updateDelYn(Model model, Long postNo) {
+        postService.updateDelYn(postNo);
+        return "redirect:/post/list";
     }
 }

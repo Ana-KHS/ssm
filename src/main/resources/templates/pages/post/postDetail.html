@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>ssm : 게시판 상세</title>
     <script type="text/javascript" th:src="@{/js/post/postDetail.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link th:href="@{/css/comm.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <h5 th:text="|${detailList.postWriterName}/${detailList.postWriterDept}|"></h5>
     <h5 th:text="${#temporals.format(detailList.createDate, 'yyyy-MM-dd HH:MM:SS')}"></h5>
     <h3 th:text="${detailList.postContent}"></h3>
-    <button th:if="${detailList.postWriterName} == ${sessionUserName}" id="deletePost" onclick="deletePost()">삭제</button>
+    <button th:if="${detailList.postWriterName} == ${sessionUserName}" id="deletePost" th:onclick="deletePost([[${detailList.postNo}]])">삭제</button>
 </div>
 </body>
 </html>

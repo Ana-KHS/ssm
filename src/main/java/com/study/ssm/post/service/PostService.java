@@ -6,7 +6,6 @@ import com.study.ssm.post.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -26,8 +25,15 @@ public class PostService {
         return postRepository.findById(postNo).get();
     }
 
+    /*public List<PostBasicEntity> postList() {
+        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "postNo"));
+    }*/
 
     public List<PostBasicEntity> postList() {
-        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "postNo"));
+        return postRepository.findByDelYnOrderByPostNoDesc("N");
+    }
+
+    public void updateDelYn(Long postNo) {
+        postRepository.updateDelYn(postNo);
     }
 }
